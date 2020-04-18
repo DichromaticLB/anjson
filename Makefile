@@ -58,5 +58,5 @@ install: $(TARGET)
 	cp $(TARGET) $(INSTALL_LIB)
 	
 clean:
-	rm -f $(OBJ) $(TARGET) $(FLEXTGT) $(BISONTGT) $(TARGETBIN) \
+	rm -f $(OBJ) $(OBJ_DIR)/$(MAINOBJ) $(TARGET) $(FLEXTGT) $(BISONTGT) $(TARGETBIN) \
 	$(INCLUDE_DIR)/stack.hh $(INCLUDE_DIR)/anjson_parser.hpp $(INCLUDE_DIR)/anjson_accessor.hpp $(SRC_DIR)/anjson_accessor.cpp $(SRC_DIR)/stack.hh
