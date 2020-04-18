@@ -36,7 +36,7 @@ Once installed
 int main()
 {
 	using namespace anjson;
-  using namespace std;
+  	using namespace std;
   
 	jsonobject json=fromString("{\"test\":[1,2,3,4],\"key\":{\"key2\":{}}}");
 	jsonobject jsonFile=fromFile("test.json");//Load object from file
