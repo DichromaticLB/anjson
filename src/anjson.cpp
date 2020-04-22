@@ -74,6 +74,31 @@ anjson::variant::variant(){
 	p=type::nulltype;
 }
 
+anjson::variant::variant(type p):variant(){
+	switch(p){
+		case type::object:
+			(*this)=variant::mapType();
+			break;
+		case type::string:
+			(*this)=string("");
+			break;
+		case type::fp:
+			(*this)=0.0f;
+			break;
+		case type::integer:
+			(*this)=0l;
+			break;
+		case type::array:
+			(*this)=variant::arrayType();
+			break;
+		case type::booltype:
+			(*this)=false;
+			break;
+		default:
+			return;
+	}
+}
+
 anjson::variant::variant(const anjson::variant&o):variant(){
 	(*this)=o;
 }

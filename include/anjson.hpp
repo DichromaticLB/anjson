@@ -34,7 +34,15 @@ namespace anjson{
 		using mapType=std::unordered_map<string,variant>;
 		using arrayType=std::vector<variant>;
 
+
 		variant();
+		variant(type p);
+
+		template<class T>
+		variant(T t):variant(){
+			(*this)=t;
+		}
+
 		~variant();
 		variant(variant&&t);
 		variant(const anjson::variant&);
