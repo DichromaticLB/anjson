@@ -65,6 +65,7 @@ namespace anjson{
 		variant& operator[](uint32_t index);
 
 		const variant query(const string& s)const;
+		const variant query(const string& s,const variant &def)const;
 		double doubleCast()const;
 
 		string typestr() const{

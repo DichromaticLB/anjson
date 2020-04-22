@@ -320,3 +320,14 @@ const anjson::variant anjson::variant::query(const string& s) const{
 	return result;
 }
 
+const anjson::variant  anjson::variant::query(const string& s,
+		const variant &def)const{
+
+	try{
+		return query(s);
+	}catch(const runtime_error &e){
+		return def;
+	}
+
+}
+
