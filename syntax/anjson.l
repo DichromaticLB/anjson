@@ -37,6 +37,7 @@ null {yylval->release();return anjsonParser::token_type::_NULL; }
 
 0 {*yylval=string("0");return anjsonParser::token_type::DIGITS;}
 [1-9][0-9]* {*yylval=string(yytext);return anjsonParser::token_type::DIGITS;}
+0x([0-9a-fA-F]{1,16}) {*yylval=string(yytext);return anjsonParser::token_type::HEX;}
 [eE]+? {*yylval=true;return anjsonParser::token_type::EXP;}
 
 \n { linecount++;}

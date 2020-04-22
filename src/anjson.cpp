@@ -135,6 +135,11 @@ anjson::variant& anjson::variant::operator=(const string& s){
 	return *this;
 }
 
+anjson::variant& anjson::variant::operator=(const char* s){
+	set<string,type::string>(string(s));
+	return *this;
+}
+
 anjson::variant& anjson::variant::operator=(const anjson::variant::arrayType&ar){
 	set<arrayType,type::array>(ar);
 	return *this;

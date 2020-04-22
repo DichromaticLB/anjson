@@ -49,6 +49,7 @@ namespace anjson{
 		variant& operator=(variant&&t);
 		variant& operator=(const variant&t);
 		variant& operator=(const string& s);
+		variant& operator=(const char* s);
 		variant& operator=(const arrayType&ar);
 		variant& operator=(const mapType&ar);
 		variant& operator=(double d);

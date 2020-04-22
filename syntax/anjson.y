@@ -20,7 +20,7 @@
 #define yylex lexer->ajlex
 }
 
-%token BOOL DIGITS EXP _NULL CHAR STRING
+%token BOOL DIGITS EXP _NULL CHAR STRING HEX
 %left CHAR ',' ':' '-' EXP DIGITS
 %%
 
@@ -43,6 +43,7 @@ value: STRING
 	| _NULL
 	
 number: DIGITS { $$=(uint64_t)stoull($1.get<string>());}
+	| HEX { $$=(uint64_t)stoull($1.get<string>(),0,16);}
 	| DIGITS '.' DIGITS {$$=stod($1.get<string>()+"."+$3.get<string>());}
 	| number EXP DIGITS {$$=$1.doubleCast()*pow(10,stoi($3.get<string>()));}
 	| number EXP '-' DIGITS {$$=$1.doubleCast()*pow(10,-stoll($4.get<string>()));}
