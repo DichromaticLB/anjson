@@ -324,7 +324,10 @@ const anjson::variant  anjson::variant::query(const string& s,
 		const variant &def)const{
 
 	try{
-		return query(s);
+		auto r=query(s);
+		if(r.getType()==type::nulltype)
+			return def;
+		return r;
 	}catch(const runtime_error &e){
 		return def;
 	}
