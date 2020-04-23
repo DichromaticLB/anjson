@@ -12,11 +12,12 @@ using namespace std;
 using namespace anjson;
 
 static char fastHex(char a,char b){
-	a&=0xdf;
-	b&=0xdf;
 	static char table[]={
-		0,1,2,3,4,5,6,7,8,9,0,0,0,0,0,0,0,10,11,12,13,14,15
+		0,1,2,3,4,5,6,7,8,9,0,0,0,0,0,0,0,10,11,12,13,14,15,
+		0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+		10,11,12,13,14,15
 	};
+	
 	return table[a-'0']*16+table[b-'0'];	
 }
 
