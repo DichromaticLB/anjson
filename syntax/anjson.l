@@ -57,7 +57,6 @@ null {yylval->release();return anjsonParser::token_type::_NULL; }
 \\n  {(*yylval).get<string>()+='\n';}
 \\r  {(*yylval).get<string>()+='\r';}
 \\t  {(*yylval).get<string>()+='\t';}
-\\x[a-fA-F0-9]{2} {(*yylval).get<string>()+=fastHex(yytext[2],yytext[3]);}
 \\u([a-fA-F0-9]{4})  {
 	char c=fastHex(yytext[2],yytext[3]);
 	if(c!=0)
