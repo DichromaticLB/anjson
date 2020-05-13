@@ -64,6 +64,8 @@ namespace anjson{
 		const variant& operator[](uint32_t index) const;
 		variant& operator[](uint32_t index);
 
+		bool containsKey(const string&s) const;
+		bool containsKeyType(const string&s,type t) const;
 		const variant query(const string& s)const;
 		const variant query(const string& s,const variant &def)const;
 		double doubleCast()const;

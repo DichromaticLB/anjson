@@ -305,6 +305,15 @@ anjson::variant& anjson::variant::operator[](uint32_t index){
 	}
 }
 
+bool anjson::variant::containsKey(const string&s) const{
+	return p==type::object&&get<mapType>().count(s);
+}
+
+bool anjson::variant::containsKeyType(const string&s,type t) const{
+	return p==type::object&&get<mapType>().count(s)
+			&&get<mapType>().at(s).getType()==t;
+}
+
 #include"syntools.hpp"
 #include"anjson_accessor.hpp"
 #include<sstream>

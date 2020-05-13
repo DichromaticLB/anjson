@@ -1,4 +1,11 @@
-CXXFLAGS =	-O2  -Wall -Wno-register -fmessage-length=0 -std=c++17 -I$(INCLUDE_DIR) -fPIC
+ARCH= X86_64
+#ARCH= AARCH64
+
+CXX_AARCH64 = aarch64-linux-gnu-g++
+CXX_X86_64 = x86_64-linux-gnu-g++
+CXX = $(CXX_$(ARCH))
+CXXFLAGS =	-O2  -Wall -Wno-array-bounds -Wno-register\
+	 -fmessage-length=0 -std=c++17 -I$(INCLUDE_DIR) -fPIC
 LEX= flex
 YACC= bison
 BISONFLAGS= -d 
@@ -28,6 +35,7 @@ OBJ = $(patsubst %,$(OBJ_DIR)/%,$(_OBJ))
 
 TARGET =	libanjson.so
 TARGETBIN = anjson
+TARGETLIB = libanjson.a
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp $(FLEXTGT) $(BISONTGT) $(BISONTGT2)
 	$(CXX) $(CXXFLAGS)  -c -o $@  $<
@@ -37,6 +45,9 @@ $(TARGET):	$(OBJ)
 
 $(TARGETBIN):	$(OBJ) $(OBJ_DIR)/$(MAINOBJ)
 	$(CXX) -o $(TARGETBIN)  $(OBJ)  $(OBJ_DIR)/$(MAINOBJ)
+
+$(TARGETLIB): $(OBJ) 
+	$(AR) rcs $(TARGETLIB) $(OBJ)
 	
 $(FLEXTGT) : $(FLEXSRC) 
 	$(LEX)   $(FLEXFLAGS) -o$(FLEXTGT)   $(FLEXSRC) 
@@ -51,6 +62,8 @@ $(BISONTGT2): $(BISONSRC2)
 all:	$(TARGET)
 
 exec: $(TARGETBIN)
+
+static: $(TARGETLIB)
 
 install: $(TARGET)
 	mkdir -vp $(INSTALL_INCLUDE)anjson
