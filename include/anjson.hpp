@@ -70,6 +70,15 @@ namespace anjson{
 		const variant query(const string& s,const variant &def)const;
 		double doubleCast()const;
 
+		bool containsKeys() const{
+			return true;
+		}
+
+		template<typename... Targs>
+		bool containsKeys(const string&s, Targs... rem) const{
+			return containsKey(s)&&containsKeys(rem...);
+		}
+
 		string typestr() const{
 			return anjson::typestr(p);
 		}

@@ -10,7 +10,7 @@
 
 #include<iostream>
 
-class anjLexer:public anjFlexLexer{
+class anjLexer:public yyFlexLexer{
 public:
 	anjLexer(std::istream& i):anjFlexLexer(&i),datasrc(i),linecount(1){}
 	int ajlex(anjson::variant* v);
